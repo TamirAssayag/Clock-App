@@ -37,8 +37,8 @@ export const Quote: FC = () => {
         <p className="quote__text">"{quote.en}"</p>
         <p className="quote__author">{quote.author}</p>
       </div>
-      <div className="quote__refresh-icon" onClick={fetchRandomQuote}>
-        <RefreshIcon />
+      <div className="quote__refresh-icon">
+        <RefreshIcon onClick={fetchRandomQuote} />
       </div>
     </div>
   );

@@ -107,10 +107,11 @@ export const Time: FC = () => {
   useEffect(() => {
     startProcedure();
 
-    setInterval(() => {
+    const intervalId = setInterval(() => {
       setTime(new Date().getTime());
     }, 1000);
-  });
+    return () => clearInterval(intervalId);
+  }, []);
 
   return (
     <div className={classNames("main", { "main__toggled-ui": toggleUi })}>
