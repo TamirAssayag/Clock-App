@@ -1,0 +1,50 @@
+@import "../../styles/import";
+.quote {
+  display: flex;
+  gap: 1.5rem;
+
+  &__text {
+    font-size: 1.125rem;
+    margin-bottom: 1rem;
+  }
+
+  &__author {
+    font-size: 1.125rem;
+    font-weight: bold;
+  }
+
+  &__inner {
+    width: 50%;
+  }
+
+  &__refresh-icon {
+    width: 50%;
+
+    svg {
+      cursor: pointer;
+      transition: 0.2s ease all;
+
+      &:active {
+        transform: rotate(90deg);
+      }
+    }
+  }
+
+  @include media("<tablet") {
+    &__inner,
+    &__refresh-icon {
+      width: unset;
+    }
+
+    &__refresh-icon {
+      margin-left: auto;
+    }
+  }
+
+  @include media("<mobile") {
+    &__text,
+    &__author {
+      font-size: 12px;
+    }
+  }
+}

@@ -1,0 +1,33 @@
+.container {
+  width: 100%;
+  margin: 0 auto;
+  padding: 0 2rem;
+  max-width: $page-max-width;
+
+  &.no-padding {
+    padding: 0;
+  }
+
+  @include media("<=mobile") {
+    padding: 0 2rem;
+  }
+
+  @include media("<=maxer", ">mobile") {
+    max-width: $inner-max-width;
+  }
+}
+
+.inner-container {
+  width: 100%;
+  margin: 0 auto;
+  padding: 0 2rem;
+  max-width: $inner-max-width;
+
+  &.no-padding {
+    padding: 0;
+  }
+
+  @include media("<=mobile") {
+    padding: 0 2rem;
+  }
+}

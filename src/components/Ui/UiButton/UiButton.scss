@@ -1,0 +1,71 @@
+@import "../../../styles/import";
+
+.ui-button {
+  width: 146px;
+  height: 56px;
+  border: unset;
+  border-radius: 1.75rem;
+  background-color: $white;
+  cursor: pointer;
+
+  @include media("<mobile") {
+    width: 115px;
+    height: 39px;
+  }
+
+  &__wrapper {
+    display: flex;
+    align-items: center;
+  }
+
+  &__text {
+    text-transform: uppercase;
+    width: 63px;
+    height: 28px;
+    opacity: 0.5;
+    font-size: 1rem;
+    font-weight: bold;
+    line-height: 1.75;
+    letter-spacing: 5px;
+    margin: auto;
+    color: #000;
+
+    @include media("<mobile") {
+      font-size: 12px;
+      width: 47px;
+      height: auto;
+    }
+  }
+
+  &__icon {
+    width: 40px;
+    height: 40px;
+    background-color: #303030;
+    border-radius: 50%;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    transition: all 0.2s ease;
+    margin-right: 0.2rem;
+
+    svg {
+      fill: white;
+      width: 20px;
+      height: 20px;
+    }
+
+    @include media("<mobile") {
+      width: 32px;
+      height: 32px;
+
+      svg {
+        width: 15px;
+        height: 15px;
+      }
+    }
+  }
+
+  &:hover &__icon {
+    background-color: #999999;
+  }
+}
