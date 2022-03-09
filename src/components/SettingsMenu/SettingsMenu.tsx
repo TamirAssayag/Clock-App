@@ -9,7 +9,7 @@ import "./SettingsMenu.scss";
 import "swiper/css";
 import { AnimatePresence, motion, Variants } from "framer-motion";
 
-interface SettingsMenu {
+interface ISettingsMenu {
   expanded?: boolean;
 }
 
@@ -37,7 +37,7 @@ const variants: Variants = {
   },
 };
 
-export const SettingsMenu: FC<SettingsMenu> = ({ expanded }) => {
+export const SettingsMenu: FC<ISettingsMenu> = ({ expanded }) => {
   const images: ImagesType[] = [
     { id: 1, src: Day1, type: "day" },
     { id: 2, src: Day2, type: "day" },
