@@ -23,7 +23,7 @@ type GreetingType = {
   isNight: boolean;
 };
 
-export const Time: FC = () => {
+export const Main: FC = () => {
   const [toggleUi, setToggleUi] = React.useState(false);
   React.useEffect(() => {
     if (toggleUi) {

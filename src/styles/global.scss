@@ -13,11 +13,9 @@
 }
 
 html {
-  height: -webkit-fill-available;
 }
 
 body {
-  height: -webkit-fill-available;
   background-color: $black;
   font-family: "Inter";
   color: $white;
@@ -37,17 +35,18 @@ body {
 }
 
 .clock-app {
-  height: -webkit-fill-available;
+  height: var(--height);
   overflow: hidden;
 }
 
 :root {
-  --expand-height: 400px;
+  --height: -webkit-fill-available;
+  --expand-height: 50%;
   --expand-transition: 0.5s cubic-bezier(0.23, 1, 0.32, 1);
 }
 
 @include media("<tablet") {
   :root {
-    --expand-height: 40vh;
+    --expand-height: 40%;
   }
 }
