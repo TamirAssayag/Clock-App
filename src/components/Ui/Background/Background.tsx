@@ -1,11 +1,6 @@
 import React, { FC } from "react";
 import { userSettings } from "../../../zustand";
-import {
-  motion,
-  AnimatePresence,
-  AnimateSharedLayout,
-  Variants,
-} from "framer-motion";
+import { motion, AnimatePresence, Variants } from "framer-motion";
 import "./Background.scss";
 
 const variants: Variants = {
