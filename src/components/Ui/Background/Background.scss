@@ -1,0 +1,27 @@
+.main__bg {
+  --background-hue: 90, 12, 255;
+  --background-fade: 1;
+
+  // due-tone
+
+  img {
+    position: absolute;
+    z-index: -1;
+    height: 100vh;
+    width: 100%;
+    color: #fff;
+    filter: contrast(1.1);
+    object-position: center;
+    object-fit: cover;
+    filter: contrast(1.2);
+  }
+
+  &::after {
+    content: "";
+    position: absolute;
+    background: rgba(var(--background-hue), var(--background-fade));
+    inset: 0;
+    z-index: -1;
+    mix-blend-mode: hue;
+  }
+}

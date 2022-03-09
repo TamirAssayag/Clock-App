@@ -1,6 +1,6 @@
 import React, { useEffect } from "react";
 import "./styles/global.scss";
-import { Main } from "./components";
+import { Header, Main } from "./components";
 
 const App: React.FunctionComponent = () => {
   useEffect(() => {
@@ -14,6 +14,7 @@ const App: React.FunctionComponent = () => {
 
   return (
     <div className="clock-app">
+      <Header />
       <Main />
     </div>
   );

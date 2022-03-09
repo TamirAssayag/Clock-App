@@ -1,0 +1,59 @@
+@import "../../styles/import";
+.header {
+  height: 32px;
+  padding: 0 3.5rem;
+  max-width: 1440px;
+  width: 100%;
+  margin: auto;
+  position: absolute;
+  left: 50%;
+  transform: translate(-50%, 0);
+  z-index: 2;
+  top: 0.33rem;
+
+  @include media("<tablet") {
+    max-width: unset;
+    width: 100%;
+  }
+
+  @include media("<mobile") {
+    padding: 0 1.625rem;
+  }
+
+  &__wrapper {
+    opacity: 0.7;
+    height: 100%;
+
+    margin-left: auto;
+    width: fit-content;
+
+    cursor: pointer;
+    transition: all var(--expand-transition);
+
+    &:hover {
+      opacity: 1;
+      transform: scale(1.02);
+    }
+
+    h2 {
+      text-transform: uppercase;
+      letter-spacing: 3px;
+      font-weight: normal;
+      font-size: 0.7rem;
+    }
+  }
+
+  &__cta {
+    display: flex;
+    align-items: center;
+    gap: 0.5rem;
+  }
+
+  #settings-icon {
+    height: 20px;
+
+    g {
+      fill: lightgray;
+    }
+  }
+}

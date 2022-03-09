@@ -15,13 +15,7 @@ import {
   SunIcon,
 } from "../";
 import { useMobile } from "../../hooks";
-
-type GreetingType = {
-  text: string;
-  icon: any;
-  background: string;
-  isNight: boolean;
-};
+import { Background } from "../Ui/Background";
 
 export const Main: FC = () => {
   const [toggleUi, setToggleUi] = React.useState(false);
@@ -46,6 +40,7 @@ export const Main: FC = () => {
     fetchGeoApi,
     fetchWorldTimeApi,
     setIsLoading,
+    getIsNight,
   } = userGeoStore((state) => state);
 
   const checkForRefresh = () => {
@@ -73,42 +68,21 @@ export const Main: FC = () => {
   const displayGreeting = (currentHour) => {
     switch (true) {
       case currentHour > 6 && currentHour < 12:
-        return {
-          text: "Good Morning",
-          icon: <SunIcon />,
-          background: background.day,
-          isNight: false,
-        };
+        return "Good Morning";
       case currentHour >= 12 && currentHour < 18:
-        return {
-          text: "Good Afternoon",
-          icon: <SunIcon />,
-          background: background.day,
-          isNight: false,
-        };
+        return "Good Afternoon";
       case currentHour > 17 && currentHour < 21:
-        return {
-          text: "Good Evening",
-          icon: <MoonIcon />,
-          background: background.night,
-          isNight: true,
-        };
+        return "Good Evening";
       default:
-        return {
-          text: "Good Night",
-          icon: <MoonIcon />,
-          background: background.night,
-          isNight: true,
-        };
+        return "Good Night";
     }
   };
 
-  const background = {
-    day: DayTimeBackground,
-    night: NightTimeBackground,
+  const greeting = {
+    text: displayGreeting(new Date().getHours()),
+    background: getIsNight() ? NightTimeBackground : DayTimeBackground,
+    icon: getIsNight() ? MoonIcon : SunIcon,
   };
-
-  const greeting: GreetingType = displayGreeting(new Date().getHours());
 
   const handleToggleUi = () => {
     setToggleUi(() => !toggleUi);
@@ -125,19 +99,19 @@ export const Main: FC = () => {
 
   return (
     <div className={classNames("main", { "main__toggled-ui": toggleUi })}>
-      <div
-        className="main__bg"
-        style={{ backgroundImage: `url(${greeting.background})` }}
-      ></div>
+      <div className="main__bg">
+        <Background greeting={greeting} />
+      </div>
       <div className="main__wrapper">
         <div className="main__container">
           <Quote />
-
           <div className="main__bottom">
             <div className="main__bottom-container">
               <div className="main__bottom-container-left">
                 <div className="status">
-                  <div className="status__icon">{greeting.icon}</div>
+                  <div className="status__icon">
+                    <greeting.icon />
+                  </div>
                   <p>
                     {greeting.text}
                     {!isMobile ? ", It's Currently" : ""}
@@ -169,11 +143,7 @@ export const Main: FC = () => {
           </div>
         </div>
       </div>
-      <MoreInfo
-        isNightTime={greeting.isNight}
-        data={data}
-        toggleUi={toggleUi}
-      />
+      <MoreInfo isNightTime={getIsNight()} data={data} toggleUi={toggleUi} />
     </div>
   );
 };

@@ -33,6 +33,7 @@ body {
 }
 
 .clock-app {
+  position: relative;
   height: var(--height);
   overflow: hidden;
 }
@@ -46,5 +47,35 @@ body {
 @include media("<tablet") {
   :root {
     --expand-height: 40%;
+  }
+}
+
+.uppercase {
+  text-transform: uppercase;
+}
+
+.letter-spacing {
+  letter-spacing: 5px;
+  font-size: 0.7rem;
+}
+
+.swiper {
+  cursor: grab;
+  &-button {
+    &-prev,
+    &-next {
+      color: white !important;
+      width: 30px !important;
+
+      &:after {
+        width: 30px;
+      }
+    }
+  }
+  &-pagination-bullet {
+    background-color: white !important;
+    &-active {
+      background-color: white !important;
+    }
   }
 }

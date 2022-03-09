@@ -16,4 +16,15 @@ export const windowHasMobileWidth = () => {
   }
 };
 
+// Convert an hex code to rgba, eg: #ffd200 to [200, 15, 122]
+export const hexToRGB = (val: string) => {
+  const aRgbHex = val?.replace("#", "")?.match(/.{1,2}/g);
+  const aRgb = [
+    parseInt(aRgbHex[0], 16),
+    parseInt(aRgbHex[1], 16),
+    parseInt(aRgbHex[2], 16),
+  ];
+  return aRgb;
+};
+
 export const isMobile = /Mobi/.test(getNavigator()) || windowHasMobileWidth();

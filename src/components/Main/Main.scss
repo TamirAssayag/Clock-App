@@ -4,7 +4,7 @@
   width: 100%;
   transition: transform 0.5s ease-in-out;
   position: relative;
-  overflow-y: hidden;
+  overflow: hidden;
 
   &__wrapper {
     height: 100%;
@@ -18,20 +18,6 @@
     &__wrapper {
       transform: translateY(calc(var(--expand-height) * -1));
     }
-  }
-
-  &__bg {
-    position: absolute;
-    z-index: -1;
-    height: 100vh;
-    width: 100%;
-    color: #fff;
-    background-color: #888888;
-    filter: contrast(1.1);
-    background-blend-mode: multiply;
-    background-repeat: no-repeat;
-    background-position: center;
-    background-size: cover;
   }
 
   &__container {
