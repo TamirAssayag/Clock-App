@@ -23,7 +23,6 @@ export const MoreInfo: FC<MoreInfoProps> = ({
   return (
     <section
       className={classNames("expand-panel", { night: isNightTime, toggleUi })}
-      role="main"
     >
       <div className="expand-panel__wrapper">
         <div className="expand-panel__data">
