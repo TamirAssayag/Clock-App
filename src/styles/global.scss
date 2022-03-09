@@ -70,12 +70,3 @@ body {
   }
 }
 
-.settings-menu {
-  &.night {
-    #swiper-img {
-      border: 2px solid rgb(214, 214, 214, 0.5);
-    }
-    background: linear-gradient(0deg, rgb(3, 3, 3) 0%, rgba(0, 0, 0, 0) 100%);
-    color: #fff;
-  }
-}

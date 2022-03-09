@@ -41,6 +41,13 @@ export const Main: FC = () => {
         document.body.classList.remove("ui-expanded");
       }
     }
+    if (isNight) {
+      document.body.classList.add("night");
+    } else {
+      if (document.body.classList.contains("night")) {
+        document.body.classList.remove("night");
+      }
+    }
   }, [toggleUi]);
 
   const checkForRefresh = () => {

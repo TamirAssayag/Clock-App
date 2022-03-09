@@ -20,27 +20,42 @@ const transition = {
   },
 };
 
+const imgVariants: Variants = {
+  active: {
+    visibility: "visible",
+    opacity: 1,
+  },
+  inactive: {
+    visibility: "hidden",
+    opacity: 0,
+  },
+};
+
 const variants: Variants = {
   enter: {
     opacity: 0,
-    x: 400,
+    x: "115%",
   },
-  center: {
-    opacity: 1,
-    x: 0,
-  },
+  center: { opacity: 1, x: 0 },
   exit: {
     opacity: 0,
-    x: 400,
+    x: "115%",
   },
 };
 
 export const SettingsMenu: FC<ISettingsMenu> = ({ expanded }) => {
-  const { setData, isNight, backgroundImages } = userSettings((state) => state);
+  const { setData, backgroundImages } = userSettings((state) => state);
+  const [loadedImages, setLoadedImages] = React.useState([]);
+  const [menuAnimDone, setMenuAnimDone] = React.useState(false);
 
   const handleBackgroundChange = (id: number) => {
     const selectedBg = backgroundImages.find((image) => image.id === id);
     return () => setData({ bg: selectedBg });
+  };
+
+  const addToLoadedImages = (id: number) => {
+    if (loadedImages.includes(id)) return;
+    return () => setLoadedImages([...loadedImages, id]);
   };
 
   return (
@@ -54,51 +69,67 @@ export const SettingsMenu: FC<ISettingsMenu> = ({ expanded }) => {
           exit="exit"
           className={classNames("settings-menu", {
             "settings-expanded": expanded,
-            night: isNight,
           })}
+          onAnimationComplete={() => setMenuAnimDone(true)}
         >
-          <motion.h3 variants={variants} transition={transition}>
-            Settings
-          </motion.h3>
-          <motion.p
-            variants={variants}
-            className="uppercase letter-spacing"
-            transition={{ ...transition, delay: 0.1 }}
-          >
-            Change background
-          </motion.p>
-          <div className="settings-menu__item">
-            <div className="settings-menu__item-content">
-              <Swiper
-                modules={[Mousewheel]}
-                spaceBetween={10}
-                slidesPerView={3.5}
-                slideToClickedSlide
-                mousewheel
-                breakpoints={{
-                  390: {
-                    slidesPerView: 2.2,
-                  },
-                  768: {
-                    slidesPerView: 3.5,
-                  },
-                }}
-              >
-                {backgroundImages.map((img) => (
-                  <SwiperSlide
-                    key={img.id}
-                    onClick={handleBackgroundChange(img.id)}
-                  >
-                    <motion.img
-                      src={require("../../assets/images/" + img.src)}
-                      alt=""
-                      id="swiper-img"
-                    />
-                  </SwiperSlide>
-                ))}
-              </Swiper>
-            </div>
-          </div>
+          <motion.div className="settings-menu-title">
+            <motion.h3 variants={variants} transition={transition}>
+              Settings
+            </motion.h3>
+            <motion.p
+              variants={variants}
+              className="uppercase letter-spacing"
+              transition={{ ...transition, delay: 0.1 }}
+            >
+              Change background
+            </motion.p>
+          </motion.div>
+          <motion.div className="settings-menu__item">
+            {menuAnimDone && (
+              <motion.div className="settings-menu__item-content">
+                <Swiper
+                  modules={[Mousewheel]}
+                  spaceBetween={10}
+                  slidesPerView={3.5}
+                  slidesOffsetAfter={16}
+                  slidesOffsetBefore={16}
+                  slideToClickedSlide
+                  freeMode
+                  mousewheel
+                  breakpoints={{
+                    390: {
+                      slidesPerView: 2.2,
+                    },
+                    768: {
+                      slidesPerView: 3.5,
+                    },
+                  }}
+                >
+                  {backgroundImages.map((img) => (
+                    <SwiperSlide
+                      key={img.id}
+                      onClick={handleBackgroundChange(img.id)}
+                    >
+                      <motion.div className="swiper-img-skeleton">
+                        <motion.img
+                          animate={
+                            loadedImages.includes(img.id)
+                              ? "active"
+                              : "inactive"
+                          }
+                          variants={imgVariants}
+                          src={require("../../assets/images/" + img.src)}
+                          onLoad={addToLoadedImages(img.id)}
+                          alt=""
+                          id="swiper-img"
+                        />
+                      </motion.div>
+                    </SwiperSlide>
+                  ))}
+                </Swiper>
+              </motion.div>
+            )}
+          </motion.div>
         </motion.div>
       )}
     </AnimatePresence>
