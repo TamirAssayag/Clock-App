@@ -4,19 +4,21 @@
   width: 100%;
   transition: transform 0.5s ease-in-out;
   position: relative;
+  overflow-y: hidden;
 
   &__wrapper {
     height: 100%;
     width: 1440px;
     margin: 0 auto;
     transition: transform var(--expand-transition) 20ms;
+    overflow-y: hidden;
   }
 
   .ui-expanded & {
     &__wrapper {
       transform: translateY(calc(var(--expand-height) * -1));
     }
-    
+
     @include media("<tablet") {
       // height: calc(100% / 1.75);
     }
@@ -37,6 +39,7 @@
   }
 
   &__container {
+    overflow-y: hidden;
     height: 100%;
     display: flex;
     flex-direction: column;
