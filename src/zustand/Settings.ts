@@ -8,7 +8,7 @@ type UserSettings = {
 
 const store = (set, get) =>
   ({
-    data: null,
+    data: {},
     setData: (payload: any) =>
       set((state) => ({ data: { ...state.data, ...payload } })),
   } as UserSettings);
