@@ -1,9 +1,7 @@
 import React, { FC } from "react";
 import { Mousewheel } from "swiper";
 import { Swiper, SwiperSlide } from "swiper/react";
-import { Day1, Day2, Day3, Day4, Day5 } from "../Images";
-import { userGeoStore, userSettings } from "../../zustand";
-import { ImagesType } from "../../types";
+import { userSettings } from "../../zustand";
 import classNames from "classnames";
 import "./SettingsMenu.scss";
 import "swiper/css";

@@ -20,7 +20,6 @@ const variants = {
 };
 
 export const Background: FC = () => {
-  const state = userSettings();
   const { data, backgroundImages } = userSettings();
 
   // If no selected user background, use the default background (first in current Images array)

@@ -5,7 +5,6 @@ import { computed } from "zustand-middleware-computed-state";
 
 import SettingsJson from "../components/SettingsMenu/settings.json";
 import { ImagesType } from "../types";
-import { isNullOrUndefined } from "../utils";
 
 type Image = {
   [key: string]: ImagesType[];

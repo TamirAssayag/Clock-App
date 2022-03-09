@@ -8,4 +8,3 @@ export * from "./Quote";
 export * from "./Ui";
 
 export * from "./SVG";
-export * from "./Images";
