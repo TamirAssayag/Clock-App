@@ -32,6 +32,7 @@
 
     @include media("<mobile") {
       font-size: 12px;
+      letter-spacing: 3.75px;
       width: 47px;
       height: auto;
     }
@@ -46,7 +47,7 @@
     justify-content: center;
     align-items: center;
     transition: all 0.2s ease;
-    margin-right: 0.2rem;
+    margin-right: auto;
 
     svg {
       fill: white;
