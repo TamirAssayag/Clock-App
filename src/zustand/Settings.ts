@@ -27,7 +27,9 @@ const store = (set, get) =>
 
 const computedStore = (state) => {
   function isNight() {
-    return new Date().getHours() > 17;
+    // calculate the time of the night
+    const currentHour = new Date().getHours();
+    return currentHour >= 17 || currentHour <= 6;
   }
 
   function backgroundImages() {

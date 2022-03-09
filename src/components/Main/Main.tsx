@@ -7,8 +7,6 @@ import {
   UiButton,
   Quote,
   MoreInfo,
-  DayTimeBackground,
-  NightTimeBackground,
   ArrowDownIcon,
   ArrowUpIcon,
   MoonIcon,
@@ -87,7 +85,6 @@ export const Main: FC = () => {
 
   const greeting = {
     text: displayGreeting(new Date().getHours()),
-    background: isNight ? NightTimeBackground : DayTimeBackground,
     icon: isNight ? MoonIcon : SunIcon,
   };
 

@@ -93,7 +93,7 @@ export const SettingsMenu: FC<ISettingsMenu> = ({ expanded }) => {
                   slidesOffsetBefore={16}
                   slideToClickedSlide
                   freeMode={{
-                    enabled: true,
+                    enabled: false,
                     sticky: true,
                   }}
                   mousewheel
