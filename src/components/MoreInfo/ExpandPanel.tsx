@@ -21,7 +21,7 @@ export const MoreInfo: FC<MoreInfoProps> = ({
   ];
 
   return (
-    <section
+    <div
       className={classNames("expand-panel", { night: isNightTime, toggleUi })}
     >
       <div className="expand-panel__wrapper">
@@ -34,6 +34,6 @@ export const MoreInfo: FC<MoreInfoProps> = ({
           ))}
         </div>
       </div>
-    </section>
+    </div>
   );
 };

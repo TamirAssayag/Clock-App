@@ -32,7 +32,7 @@ export const Quote: FC = () => {
   }, []);
 
   return (
-    <section className="quote">
+    <div className="quote">
       <div className="quote__inner" role="contentinfo">
         <p className="quote__text">"{quote.en}"</p>
         <p className="quote__author">{quote.author}</p>
@@ -40,6 +40,6 @@ export const Quote: FC = () => {
       <div className="quote__refresh-icon">
         <RefreshIcon onClick={fetchRandomQuote} />
       </div>
-    </section>
+    </div>
   );
 };
