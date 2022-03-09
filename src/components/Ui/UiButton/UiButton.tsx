@@ -10,10 +10,10 @@ type UiButtonProps = {
 export const UiButton: FC<UiButtonProps> = ({ text, icon, onClick }) => {
   return (
     <button className="ui-button" onClick={onClick}>
-      <div className="ui-button__wrapper">
-        <div className="ui-button__text">{text}</div>
-        <div className="ui-button__icon">{icon}</div>
-      </div>
+      <span className="ui-button__wrapper">
+        <p className="ui-button__text">{text}</p>
+        <span className="ui-button__icon">{icon}</span>
+      </span>
     </button>
   );
 };

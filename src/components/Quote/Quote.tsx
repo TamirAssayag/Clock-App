@@ -32,14 +32,14 @@ export const Quote: FC = () => {
   }, []);
 
   return (
-    <div className="quote">
-      <div className="quote__inner">
+    <section className="quote">
+      <div className="quote__inner" role="contentinfo">
         <p className="quote__text">"{quote.en}"</p>
         <p className="quote__author">{quote.author}</p>
       </div>
       <div className="quote__refresh-icon">
         <RefreshIcon onClick={fetchRandomQuote} />
       </div>
-    </div>
+    </section>
   );
 };

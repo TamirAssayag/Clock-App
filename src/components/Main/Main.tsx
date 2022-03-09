@@ -138,15 +138,15 @@ export const Main: FC = () => {
               <div className="main__bottom-container-left">
                 <div className="status">
                   <div className="status__icon">{greeting.icon}</div>
-                  <p>
+                  <p role="none">
                     {greeting.text}
                     {!isMobile ? ", It's Currently" : ""}
                   </p>
                 </div>
-                <div className="time">
+                <div className="time" role="time">
                   <div className="time__wrapper">
                     {/* <span className="time__hours">{new Date().getHours()}</span> */}
-                    <h1 className="time__minutes">
+                    <h1 className="time__minutes" role="time">
                       {dayjs(time).format("HH:mm")}
                     </h1>
                     <span className="time__abbreviation">IST</span>
@@ -156,7 +156,7 @@ export const Main: FC = () => {
                   </span>
                 </div>
               </div>
-              <div className="main__bottom-container-right">
+              <div className="main__bottom-container-right" role="button">
                 <UiButton
                   text={toggleUi ? "Less" : "More"}
                   icon={toggleUi ? <ArrowUpIcon /> : <ArrowDownIcon />}
