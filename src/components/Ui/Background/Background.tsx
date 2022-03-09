@@ -1,20 +1,24 @@
 import React, { FC } from "react";
 import { userSettings } from "../../../zustand";
-import { motion, AnimatePresence } from "framer-motion";
+import {
+  motion,
+  AnimatePresence,
+  AnimateSharedLayout,
+  Variants,
+} from "framer-motion";
 import "./Background.scss";
 
-const variants = {
+const variants: Variants = {
   enter: {
-    filter: "blur(0)",
-    scale: 1,
+    scale: 0.5,
     opacity: 0,
   },
   center: {
     opacity: 1,
+    scale: 1,
   },
   exit: {
     opacity: 0,
-    filter: "blur(5px)",
     scale: 1.2,
   },
 };

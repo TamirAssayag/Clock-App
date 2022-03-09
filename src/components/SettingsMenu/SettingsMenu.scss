@@ -51,6 +51,12 @@
   height: 100%;
   opacity: 0.7;
   transition: opacity var(--expand-transition);
+  border-radius: 0.35em;
+  overflow: hidden;
+
+  .night & {
+    border: 2px solid rgb(214, 214, 214, 0.5);
+  }
 
   &:hover {
     opacity: 1;
@@ -61,11 +67,7 @@
     width: 100%;
     object-fit: cover;
     object-position: center;
-    border-radius: 0.35em;
+    border-radius: inherit;
     cursor: pointer;
-
-    .night & {
-      border: 2px solid rgb(214, 214, 214, 0.5);
-    }
   }
 }

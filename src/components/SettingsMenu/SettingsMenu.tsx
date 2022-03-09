@@ -22,11 +22,9 @@ const transition = {
 
 const imgVariants: Variants = {
   active: {
-    visibility: "visible",
     opacity: 1,
   },
   inactive: {
-    visibility: "hidden",
     opacity: 0,
   },
 };
@@ -34,12 +32,12 @@ const imgVariants: Variants = {
 const variants: Variants = {
   enter: {
     opacity: 0,
-    x: "115%",
+    y: "-115%",
   },
-  center: { opacity: 1, x: 0 },
+  center: { opacity: 1, y: 0 },
   exit: {
     opacity: 0,
-    x: "115%",
+    y: "-115%",
   },
 };
 
@@ -94,7 +92,10 @@ export const SettingsMenu: FC<ISettingsMenu> = ({ expanded }) => {
                   slidesOffsetAfter={16}
                   slidesOffsetBefore={16}
                   slideToClickedSlide
-                  freeMode
+                  freeMode={{
+                    enabled: true,
+                    sticky: true,
+                  }}
                   mousewheel
                   breakpoints={{
                     390: {
@@ -110,7 +111,7 @@ export const SettingsMenu: FC<ISettingsMenu> = ({ expanded }) => {
                       key={img.id}
                       onClick={handleBackgroundChange(img.id)}
                     >
-                      <motion.div className="swiper-img-skeleton">
+                      <div className="swiper-img-skeleton">
                         <motion.img
                           animate={
                             loadedImages.includes(img.id)
@@ -122,8 +123,9 @@ export const SettingsMenu: FC<ISettingsMenu> = ({ expanded }) => {
                           onLoad={addToLoadedImages(img.id)}
                           alt=""
                           id="swiper-img"
+                          whileHover={{ scale: 1.1 }}
                         />
-                      </motion.div>
+                      </div>
                     </SwiperSlide>
                   ))}
                 </Swiper>
