@@ -12,14 +12,12 @@
   }
 }
 
-html {
-}
-
 body {
   background-color: $black;
   font-family: "Inter";
   color: $white;
   align-items: center;
+  touch-action: none;
 
   a {
     color: inherit;
