@@ -1,7 +1,7 @@
 import React, { FC, useEffect } from "react";
 import "./Main.scss";
 import classNames from "classnames";
-import { userGeoStore } from "../../zustand";
+import { userGeoStore, userSettings } from "../../zustand";
 import dayjs from "dayjs";
 import {
   UiButton,
@@ -16,21 +16,11 @@ import {
 } from "../";
 import { useMobile } from "../../hooks";
 import { Background } from "../Ui/Background";
+import { isNull } from "lodash";
 
 export const Main: FC = () => {
   const [toggleUi, setToggleUi] = React.useState(false);
-  React.useEffect(() => {
-    if (toggleUi) {
-      document.body.classList.add("ui-expanded");
-    } else {
-      if (document.body.classList.contains("ui-expanded")) {
-        document.body.classList.remove("ui-expanded");
-      }
-    }
-  }, [toggleUi]);
-
   const [time, setTime] = React.useState(new Date().getTime());
-
   const { isMobile } = useMobile();
 
   const {
@@ -42,6 +32,20 @@ export const Main: FC = () => {
     setIsLoading,
     getIsNight,
   } = userGeoStore((state) => state);
+
+  const { data: dataSettings, setData: setSettings } = userSettings(
+    (state) => state
+  );
+
+  React.useEffect(() => {
+    if (toggleUi) {
+      document.body.classList.add("ui-expanded");
+    } else {
+      if (document.body.classList.contains("ui-expanded")) {
+        document.body.classList.remove("ui-expanded");
+      }
+    }
+  }, [toggleUi]);
 
   const checkForRefresh = () => {
     return lastUpdated !== null
@@ -94,6 +98,16 @@ export const Main: FC = () => {
     const intervalId = setInterval(() => {
       setTime(new Date().getTime());
     }, 1000);
+
+    if (isNull(dataSettings)) {
+      setSettings({
+        bg: {
+          src: greeting.background,
+          id: 100,
+        },
+      });
+    }
+
     return () => clearInterval(intervalId);
   }, []);
 

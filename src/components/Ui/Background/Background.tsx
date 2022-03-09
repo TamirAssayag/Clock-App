@@ -40,9 +40,9 @@ export const Background: FC<BgProps> = ({ greeting }) => {
             opacity: { duration: 0.5 },
           }}
           src={
-            dataSettings === null ? greeting.background : dataSettings.bg.src
+            dataSettings === null ? greeting.background : dataSettings.bg?.src
           }
-          key={dataSettings.bg.id}
+          key={dataSettings.bg?.id}
           alt=""
         />
       </AnimatePresence>
