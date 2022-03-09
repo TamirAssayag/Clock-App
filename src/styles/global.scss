@@ -1,7 +1,7 @@
 @import url("https://fonts.googleapis.com/css2?family=Inter:wght@200;400;500;600;700&display=swap");
 @import "./settings/variables";
-@import "./import";
-@import "./ui";
+@import "import";
+@import "ui";
 
 * {
   margin: 0;
@@ -61,21 +61,21 @@ body {
 
 .swiper {
   cursor: grab;
-  &-button {
-    &-prev,
-    &-next {
-      color: white !important;
-      width: 30px !important;
+}
 
-      &:after {
-        width: 30px;
-      }
-    }
+.expand-panel {
+  &.night {
+    background-color: rgba(0, 0, 0, 0.75);
+    color: #fff;
   }
-  &-pagination-bullet {
-    background-color: white !important;
-    &-active {
-      background-color: white !important;
+}
+
+.settings-menu {
+  &.night {
+    #swiper-img {
+      border: 2px solid rgb(214, 214, 214, 0.5);
     }
+    background: linear-gradient(0deg, rgb(3, 3, 3) 0%, rgba(0, 0, 0, 0) 100%);
+    color: #fff;
   }
 }

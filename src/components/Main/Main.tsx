@@ -16,7 +16,6 @@ import {
 } from "../";
 import { useMobile } from "../../hooks";
 import { Background } from "../Ui/Background";
-import { isNull } from "lodash";
 
 export const Main: FC = () => {
   const [toggleUi, setToggleUi] = React.useState(false);
@@ -30,12 +29,9 @@ export const Main: FC = () => {
     fetchGeoApi,
     fetchWorldTimeApi,
     setIsLoading,
-    getIsNight,
   } = userGeoStore((state) => state);
 
-  const { data: dataSettings, setData: setSettings } = userSettings(
-    (state) => state
-  );
+  const { isNight } = userSettings();
 
   React.useEffect(() => {
     if (toggleUi) {
@@ -84,8 +80,8 @@ export const Main: FC = () => {
 
   const greeting = {
     text: displayGreeting(new Date().getHours()),
-    background: getIsNight() ? NightTimeBackground : DayTimeBackground,
-    icon: getIsNight() ? MoonIcon : SunIcon,
+    background: isNight ? NightTimeBackground : DayTimeBackground,
+    icon: isNight ? MoonIcon : SunIcon,
   };
 
   const handleToggleUi = () => {
@@ -99,22 +95,13 @@ export const Main: FC = () => {
       setTime(new Date().getTime());
     }, 1000);
 
-    if (isNull(dataSettings)) {
-      setSettings({
-        bg: {
-          src: greeting.background,
-          id: 100,
-        },
-      });
-    }
-
     return () => clearInterval(intervalId);
   }, []);
 
   return (
     <div className={classNames("main", { "main__toggled-ui": toggleUi })}>
       <div className="main__bg">
-        <Background greeting={greeting} />
+        <Background />
       </div>
       <div className="main__wrapper">
         <div className="main__container">
@@ -157,7 +144,7 @@ export const Main: FC = () => {
           </div>
         </div>
       </div>
-      <MoreInfo isNightTime={getIsNight()} data={data} toggleUi={toggleUi} />
+      <MoreInfo isNightTime={isNight} data={data} toggleUi={toggleUi} />
     </div>
   );
 };

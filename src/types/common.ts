@@ -1,7 +1,7 @@
 export type ImagesType = {
-  id: number;
-  type: string;
-  src: string;
+  id?: number;
+  type?: string;
+  src?: string;
 };
 
 export type GreetingType = {

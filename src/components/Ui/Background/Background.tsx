@@ -1,12 +1,7 @@
 import React, { FC } from "react";
-import { GreetingType } from "../../../types";
 import { userSettings } from "../../../zustand";
 import { motion, AnimatePresence } from "framer-motion";
 import "./Background.scss";
-
-interface BgProps {
-  greeting: GreetingType;
-}
 
 const variants = {
   enter: {
@@ -24,8 +19,12 @@ const variants = {
   },
 };
 
-export const Background: FC<BgProps> = ({ greeting }) => {
-  const { data: dataSettings } = userSettings((state) => state);
+export const Background: FC = () => {
+  const state = userSettings();
+  const { data, backgroundImages } = userSettings();
+
+  // If no selected user background, use the default background (first in current Images array)
+  const bg = data.bg ?? backgroundImages[0];
 
   return (
     <>
@@ -39,10 +38,8 @@ export const Background: FC<BgProps> = ({ greeting }) => {
             x: { type: "spring", stiffness: 300, damping: 30 },
             opacity: { duration: 0.5 },
           }}
-          src={
-            dataSettings === null ? greeting.background : dataSettings.bg?.src
-          }
-          key={dataSettings.bg?.id}
+          src={require("../../../assets/images/" + bg?.src)}
+          key={bg?.id}
           alt=""
         />
       </AnimatePresence>

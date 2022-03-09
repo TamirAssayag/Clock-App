@@ -40,7 +40,6 @@ type UserGeoStore = {
   isLoading: boolean;
   setIsLoading: (isLoading: boolean) => void;
 
-  getIsNight: () => boolean;
 
   fetchGeoApi: () => Promise<GeoIpState>;
   fetchWorldTimeApi: (ip: GeoIpState["ip"]) => Promise<WorldTimeState>;
@@ -58,7 +57,6 @@ const store = (set, get) =>
     isLoading: false,
     setIsLoading: (isLoading: boolean) => set(() => ({ isLoading })),
 
-    getIsNight: () => new Date().getHours() > 17,
 
     fetchGeoApi: async () => {
       const API_KEY: string = process.env.REACT_APP_GEO_IP_KEY;

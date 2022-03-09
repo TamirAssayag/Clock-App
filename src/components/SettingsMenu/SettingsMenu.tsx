@@ -38,26 +38,10 @@ const variants: Variants = {
 };
 
 export const SettingsMenu: FC<ISettingsMenu> = ({ expanded }) => {
-  const images: ImagesType[] = [
-    { id: 1, src: Day1, type: "day" },
-    { id: 2, src: Day2, type: "day" },
-    { id: 3, src: Day3, type: "day" },
-    { id: 4, src: Day4, type: "day" },
-    { id: 5, src: Day5, type: "day" },
-    { id: 6, src: Day5, type: "night" },
-  ];
-
-  const { setData } = userSettings((state) => state);
-  const { getIsNight } = userGeoStore((state) => state);
-
-  const getImagesArray = () => {
-    return images.filter(
-      (image) => image.type === (getIsNight() ? "night" : "day")
-    );
-  };
+  const { setData, isNight, backgroundImages } = userSettings((state) => state);
 
   const handleBackgroundChange = (id: number) => {
-    const selectedBg = getImagesArray().find((image) => image.id === id);
+    const selectedBg = backgroundImages.find((image) => image.id === id);
     return () => setData({ bg: selectedBg });
   };
 
@@ -72,6 +56,7 @@ export const SettingsMenu: FC<ISettingsMenu> = ({ expanded }) => {
           exit="exit"
           className={classNames("settings-menu", {
             "settings-expanded": expanded,
+            night: isNight,
           })}
         >
           <motion.h3 variants={variants} transition={transition}>
@@ -92,13 +77,25 @@ export const SettingsMenu: FC<ISettingsMenu> = ({ expanded }) => {
                 slidesPerView={3.5}
                 slideToClickedSlide
                 mousewheel
+                breakpoints={{
+                  390: {
+                    slidesPerView: 2.2,
+                  },
+                  768: {
+                    slidesPerView: 3.5,
+                  },
+                }}
               >
-                {getImagesArray().map((day) => (
+                {backgroundImages.map((img) => (
                   <SwiperSlide
-                    key={day.id}
-                    onClick={handleBackgroundChange(day.id)}
+                    key={img.id}
+                    onClick={handleBackgroundChange(img.id)}
                   >
-                    <motion.img src={day.src} alt="" id="swiper-img" />
+                    <motion.img
+                      src={require("../../assets/images/" + img.src)}
+                      alt=""
+                      id="swiper-img"
+                    />
                   </SwiperSlide>
                 ))}
               </Swiper>

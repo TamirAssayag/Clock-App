@@ -1,5 +1,4 @@
 import React, { useEffect } from "react";
-import "./styles/global.scss";
 import { Header, Main } from "./components";
 
 const App: React.FunctionComponent = () => {

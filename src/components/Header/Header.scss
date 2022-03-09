@@ -23,6 +23,7 @@
   &__wrapper {
     opacity: 0.7;
     height: 100%;
+    display: flex;
 
     margin-left: auto;
     width: fit-content;
@@ -30,10 +31,6 @@
     cursor: pointer;
     transition: all var(--expand-transition);
 
-    &:hover {
-      opacity: 1;
-      transform: scale(1.02);
-    }
 
     h2 {
       text-transform: uppercase;

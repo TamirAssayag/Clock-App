@@ -1,9 +1,9 @@
 @import "../../styles/import";
 .settings-menu {
-  backdrop-filter: blur(10px);
+  backdrop-filter: blur(5px);
   background: linear-gradient(
     0deg,
-    rgba(48, 48, 48, 1) 0%,
+    rgba(255, 255, 255, 0.7) 0%,
     rgba(0, 0, 0, 0) 100%
   );
   width: 500px;
@@ -12,6 +12,11 @@
   border-radius: 0 0 1rem 1rem;
   box-shadow: 0 1rem 1rem rgba(0, 0, 0, 0.5);
   height: 200px;
+  color: $dark-gray;
+
+  @include media("<tablet") {
+    width: 100%;
+  }
 
   span {
     margin-bottom: 1rem;

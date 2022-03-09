@@ -28,3 +28,7 @@ export const hexToRGB = (val: string) => {
 };
 
 export const isMobile = /Mobi/.test(getNavigator()) || windowHasMobileWidth();
+
+export const isNullOrUndefined = (val: any) => {
+  return val === null || val === undefined;
+};
