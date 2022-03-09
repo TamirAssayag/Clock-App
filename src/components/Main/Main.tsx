@@ -149,7 +149,9 @@ export const Main: FC = () => {
                     <h1 className="time__minutes" role="time">
                       {dayjs(time).format("HH:mm")}
                     </h1>
-                    <span className="time__abbreviation">IST</span>
+                    <span className="time__abbreviation">
+                      {data.abbreviation}
+                    </span>
                   </div>
                   <span className="time__city">
                     IN {data.city}, {data.country_code}
