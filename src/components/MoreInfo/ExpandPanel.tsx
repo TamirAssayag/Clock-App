@@ -5,9 +5,14 @@ import "./ExpandPanel.scss";
 type MoreInfoProps = {
   isNightTime: boolean;
   data: any;
+  toggleUi?: boolean;
 };
 
-export const MoreInfo: FC<MoreInfoProps> = ({ isNightTime, data }) => {
+export const MoreInfo: FC<MoreInfoProps> = ({
+  isNightTime,
+  data,
+  toggleUi,
+}) => {
   const expandData = [
     { title: "Current Time Zone", value: data.time_zone },
     { title: "Day of the year", value: data.day_of_year },
@@ -16,7 +21,9 @@ export const MoreInfo: FC<MoreInfoProps> = ({ isNightTime, data }) => {
   ];
 
   return (
-    <div className={classNames("expand-panel", { night: isNightTime })}>
+    <div
+      className={classNames("expand-panel", { night: isNightTime, toggleUi })}
+    >
       <div className="expand-panel__wrapper">
         <div className="expand-panel__data">
           {expandData.map((item, index) => (

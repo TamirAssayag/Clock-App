@@ -25,6 +25,16 @@ type GreetingType = {
 
 export const Time: FC = () => {
   const [toggleUi, setToggleUi] = React.useState(false);
+  React.useEffect(() => {
+    if (toggleUi) {
+      document.body.classList.add("ui-expanded");
+    } else {
+      if (document.body.classList.contains("ui-expanded")) {
+        document.body.classList.remove("ui-expanded");
+      }
+    }
+  }, [toggleUi]);
+
   const [time, setTime] = React.useState(new Date().getTime());
 
   const { isMobile } = useMobile();
@@ -121,7 +131,7 @@ export const Time: FC = () => {
       ></div>
       <div className="main__wrapper">
         <div className="main__container">
-          {!toggleUi && <Quote />}
+          <Quote />
 
           <div className="main__bottom">
             <div className="main__bottom-container">
@@ -157,7 +167,11 @@ export const Time: FC = () => {
           </div>
         </div>
       </div>
-      <MoreInfo isNightTime={greeting.isNight} data={data} />
+      <MoreInfo
+        isNightTime={greeting.isNight}
+        data={data}
+        toggleUi={toggleUi}
+      />
     </div>
   );
 };

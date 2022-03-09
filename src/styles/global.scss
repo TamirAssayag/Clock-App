@@ -34,4 +34,16 @@ body {
 .clock-app {
   height: 100vh;
   overflow: hidden;
+  // transition: cubic-bezier(0.23, 1, 0.32, 1);
+}
+
+:root {
+  --expand-height: 400px;
+  --expand-transition: 0.5s cubic-bezier(0.23, 1, 0.32, 1);
+}
+
+@include media("<tablet") {
+  :root {
+    --expand-height: 40vh;
+  }
 }

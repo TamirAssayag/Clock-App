@@ -1,12 +1,20 @@
 @import "../../styles/import";
 
 .expand-panel {
+  position: fixed;
+  bottom: 0;
+  width: 100%;
   padding: 4.6rem 0;
   backdrop-filter: blur(40.8px);
   -webkit-backdrop-filter: blur(40.8px);
   background-color: rgba(255, 255, 255, 0.7);
   color: $dark-gray;
-  height: 100%;
+  height: var(--expand-height);
+  transition: transform var(--expand-transition);
+  transform: translateY(100%);
+  .ui-expanded & {
+    transform: translateY(0);
+  }
 
   &.night {
     background-color: rgba(0, 0, 0, 0.75);
@@ -49,7 +57,6 @@
   // Media Queries
 
   @include media("<tablet") {
-    height: calc(100% / 2 * 1.5);
     &__data {
       &-item {
         &-title {
