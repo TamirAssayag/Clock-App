@@ -61,7 +61,7 @@ export const ColorPicker = () => {
   const handleHueChange = (value: string) => {
     setHue(value);
     const mainBgEl = document.querySelector(".main__bg") as HTMLElement;
-    const color = hexToRGB(value);
+    const color = hexToRGB(hue);
     mainBgEl.style.setProperty("--background-hue", `${color}`);
   };
 

@@ -1,10 +1,10 @@
 import Slider from "rc-slider";
 import React from "react";
 
-interface MenuSliderProps {
-  data: any;
-  onChange: (value: number) => void;
-}
+// interface MenuSliderProps {
+//   data: any;
+//   onChange: (value: number) => void;
+// }
 
 export const MenuSlider = () => {
   const [opacityValue, setOpacityValue] = React.useState(0);

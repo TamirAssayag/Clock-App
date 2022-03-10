@@ -1,5 +1,5 @@
 import React, { FC } from "react";
-import { AnimatePresence, motion } from "framer-motion";
+import { AnimatePresence } from "framer-motion";
 import "rc-slider/assets/index.css";
 import settingsJson from "./settings.json";
 import "./SettingsMenu.scss";
