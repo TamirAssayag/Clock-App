@@ -32,3 +32,13 @@ export const isMobile = /Mobi/.test(getNavigator()) || windowHasMobileWidth();
 export const isNullOrUndefined = (val: any) => {
   return val === null || val === undefined;
 };
+
+export const toggleClass = (condition: boolean, className: string) => {
+  if (condition) {
+    document.body.classList.add(className);
+  } else {
+    if (document.body.classList.contains(className)) {
+      document.body.classList.remove(className);
+    }
+  }
+};

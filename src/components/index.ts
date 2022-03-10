@@ -1,5 +1,3 @@
-export { default as DayTimeBackground } from "../assets/images/bg-daytime.jpg";
-export { default as NightTimeBackground } from "../assets/images/bg-nighttime.jpg";
 export * from "./Main";
 export * from "./Header";
 export * from "./SettingsMenu/SettingsMenu";

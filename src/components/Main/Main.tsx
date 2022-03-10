@@ -1,7 +1,10 @@
 import React, { FC, useEffect } from "react";
-import "./Main.scss";
 import classNames from "classnames";
 import { userGeoStore, userSettings } from "../../zustand";
+import { toggleClass } from "../../utils";
+import { useMobile } from "../../hooks";
+import { Background } from "../Ui";
+import "./Main.scss";
 import dayjs from "dayjs";
 import {
   UiButton,
@@ -12,8 +15,6 @@ import {
   MoonIcon,
   SunIcon,
 } from "../";
-import { useMobile } from "../../hooks";
-import { Background } from "../Ui/Background";
 
 export const Main: FC = () => {
   const [toggleUi, setToggleUi] = React.useState(false);
@@ -32,20 +33,8 @@ export const Main: FC = () => {
   const { isNight } = userSettings();
 
   React.useEffect(() => {
-    if (toggleUi) {
-      document.body.classList.add("ui-expanded");
-    } else {
-      if (document.body.classList.contains("ui-expanded")) {
-        document.body.classList.remove("ui-expanded");
-      }
-    }
-    if (isNight) {
-      document.body.classList.add("night");
-    } else {
-      if (document.body.classList.contains("night")) {
-        document.body.classList.remove("night");
-      }
-    }
+    toggleClass(toggleUi, "ui-expanded");
+    toggleClass(isNight, "night");
   }, [toggleUi]);
 
   const checkForRefresh = () => {
@@ -70,7 +59,7 @@ export const Main: FC = () => {
     }
   };
 
-  const displayGreeting = (currentHour) => {
+  const displayGreeting = (currentHour: number) => {
     switch (true) {
       case currentHour > 6 && currentHour < 12:
         return "Good Morning";

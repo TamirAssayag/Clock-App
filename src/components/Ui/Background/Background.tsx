@@ -1,7 +1,8 @@
 import React, { FC } from "react";
 import { userSettings } from "../../../zustand";
-import { motion, AnimatePresence, Variants } from "framer-motion";
+import { AnimatePresence, Variants } from "framer-motion";
 import "./Background.scss";
+import { UiImage } from "../UiImage";
 
 const variants: Variants = {
   enter: {
@@ -18,6 +19,17 @@ const variants: Variants = {
   },
 };
 
+const framerBgProps = {
+  variants,
+  initial: "enter",
+  animate: "center",
+  exit: "exit",
+  transition: {
+    x: { type: "spring", stiffness: 300, damping: 30 },
+    opacity: { duration: 0.5 },
+  },
+};
+
 export const Background: FC = () => {
   const { data, backgroundImages } = userSettings();
 
@@ -27,19 +39,7 @@ export const Background: FC = () => {
   return (
     <>
       <AnimatePresence initial={false}>
-        <motion.img
-          variants={variants}
-          initial="enter"
-          animate="center"
-          exit="exit"
-          transition={{
-            x: { type: "spring", stiffness: 300, damping: 30 },
-            opacity: { duration: 0.5 },
-          }}
-          src={require("../../../assets/images/" + bg?.src)}
-          key={bg?.id}
-          alt=""
-        />
+        <UiImage imgSrc={bg?.src} key={bg?.id} {...framerBgProps} />
       </AnimatePresence>
     </>
   );
