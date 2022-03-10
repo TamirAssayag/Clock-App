@@ -35,7 +35,7 @@ export const Main: FC = () => {
   React.useEffect(() => {
     toggleClass(toggleUi, "ui-expanded");
     toggleClass(isNight, "night");
-  }, [toggleUi || isNight]);
+  }, [toggleUi, isNight]);
 
   const checkForRefresh = () => {
     return lastUpdated !== null
