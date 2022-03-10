@@ -1,6 +1,9 @@
-.main__bg {
-  --background-hue: 30, 0, 255;
+:root {
+  --background-hue: 0, 0, 0, 0;
   --background-fade: 0;
+}
+
+.main__bg {
   pointer-events: none;
 
   // due-tone
@@ -17,6 +20,7 @@
   }
 
   &::after {
+    transition: background-color 0.3s ease-in;
     content: "";
     position: absolute;
     background: rgba(var(--background-hue), var(--background-fade));

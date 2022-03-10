@@ -87,25 +87,79 @@
       ]
     },
     {
-      "id": "background-color",
-      "type": "hue",
+      "id": "background_color",
+      "cssVariable": "--background-hue",
+      "type": "color-picker",
       "title": "Pick Hue Color",
       "optionsPerView": 7.5,
       "default": "unset",
       "options": [
-        {
-          "id": 1,
-          "color": "#ffd200"
-        }
+        { "id": 1, "hex": "#FF6633" },
+        { "id": 2, "hex": "#FFB399" },
+        { "id": 3, "hex": "#FF33FF" },
+        { "id": 4, "hex": "#FFFF99" },
+        { "id": 5, "hex": "#00B3E6" },
+        { "id": 6, "hex": "#E6B333" },
+        { "id": 7, "hex": "#3366E6" },
+        { "id": 8, "hex": "#999966" },
+        { "id": 9, "hex": "#99FF99" },
+        { "id": 10, "hex": "#B34D4D" },
+        { "id": 11, "hex": "#80B300" },
+        { "id": 12, "hex": "#809900" },
+        { "id": 13, "hex": "#E6B3B3" },
+        { "id": 14, "hex": "#6680B3" },
+        { "id": 15, "hex": "#66991A" },
+        { "id": 16, "hex": "#FF99E6" },
+        { "id": 17, "hex": "#CCFF1A" },
+        { "id": 18, "hex": "#FF1A66" },
+        { "id": 19, "hex": "#E6331A" },
+        { "id": 20, "hex": "#33FFCC" },
+        { "id": 21, "hex": "#66994D" },
+        { "id": 22, "hex": "#B366CC" },
+        { "id": 23, "hex": "#4D8000" },
+        { "id": 24, "hex": "#B33300" },
+        { "id": 25, "hex": "#CC80CC" },
+        { "id": 26, "hex": "#66664D" },
+        { "id": 27, "hex": "#991AFF" },
+        { "id": 28, "hex": "#E666FF" },
+        { "id": 29, "hex": "#4DB3FF" },
+        { "id": 30, "hex": "#1AB399" },
+        { "id": 31, "hex": "#E666B3" },
+        { "id": 32, "hex": "#33991A" },
+        { "id": 33, "hex": "#CC9999" },
+        { "id": 34, "hex": "#B3B31A" },
+        { "id": 35, "hex": "#00E680" },
+        { "id": 36, "hex": "#4D8066" },
+        { "id": 37, "hex": "#809980" },
+        { "id": 38, "hex": "#E6FF80" },
+        { "id": 39, "hex": "#1AFF33" },
+        { "id": 40, "hex": "#999933" },
+        { "id": 41, "hex": "#FF3380" },
+        { "id": 42, "hex": "#CCCC00" },
+        { "id": 43, "hex": "#66E64D" },
+        { "id": 44, "hex": "#4D80CC" },
+        { "id": 45, "hex": "#9900B3" },
+        { "id": 46, "hex": "#E64D66" },
+        { "id": 47, "hex": "#4DB380" },
+        { "id": 48, "hex": "#FF4D4D" },
+        { "id": 49, "hex": "#99E6E6" },
+        { "id": 50, "hex": "#6666FF" }
       ]
     },
     {
-      "id": "background-opacity",
-      "type": "hue-slider",
+      "id": "background_opacity",
+      "cssVariable": "--background-fade",
+      "type": "slider",
       "title": "Change Hue Opacity",
       "min": 0,
       "max": 1,
-      "default": 50
+      "default": 50,
+      "style": {
+        "dotStyle": { "backgroundColor": "black" },
+        "handleStyle": { "backgroundColor": "black", "borderColor": "gray" },
+        "railStyle": { "backgroundColor": "white" },
+        "trackStyle": { "backgroundColor": "black" }
+      }
     }
   ]
 }

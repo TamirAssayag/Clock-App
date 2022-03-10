@@ -88,10 +88,13 @@
     }
   }
 }
-.opacity-slider {
+.menu-slider {
   display: flex;
   gap: 1.5rem;
   align-items: center;
+  opacity: 1;
+  pointer-events: auto;
+  transition: opacity var(--expand-transition);
   span {
     display: flex;
     align-items: center;
@@ -101,5 +104,10 @@
     font-size: 0.7rem;
     width: 50px;
     font-weight: bold;
+  }
+
+  &.disabled {
+    opacity: 0.2;
+    pointer-events: none;
   }
 }

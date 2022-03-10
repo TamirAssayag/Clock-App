@@ -9,6 +9,7 @@ import { SettingsCard } from "./SettingsCard";
 import { MenuSwiper } from "./MenuSwiper";
 import { ColorPicker } from "./ColorPicker";
 import { MenuSlider } from "./MenuSlider";
+import { userSettings } from "../../zustand";
 
 interface SettingsMenuProps {
   expanded?: boolean;
@@ -19,24 +20,43 @@ export const SettingsMenu: FC<SettingsMenuProps> = ({ expanded }) => {
 
   const settings = settingsJson.settings;
 
-  const displayMenuItemByType = ({ ...props }) => {
-    switch (props.type) {
+  const { setData } = userSettings();
+
+  const onChange = (data) => {
+    return (val) => {
+      if (data.cssVariable)
+        document.documentElement.style.setProperty(data.cssVariable, val);
+
+      setData({ [data.id]: val });
+    };
+  };
+
+  const displayMenuItemByType = ({ ...item }) => {
+    switch (item.type) {
       case "swiper":
         return {
-          itemTitle: props.title,
+          itemTitle: item.title,
           itemContent: menuAnimDone && <MenuSwiper />,
         };
-      case "hue":
+      case "color-picker":
         return {
           className: "py-1",
-          itemTitle: props.title,
-          itemContent: <ColorPicker />,
+          itemTitle: item.title,
+          itemContent: (
+            <ColorPicker colors={item.options} onChange={onChange(item)} />
+          ),
         };
-      case "hue-slider":
+      case "slider":
         return {
           className: "py-1",
-          itemTitle: props.title,
-          itemContent: <MenuSlider />,
+          itemTitle: item.title,
+          itemContent: (
+            <MenuSlider
+              sliderStyle={item.style}
+              data={item}
+              onChange={onChange(item)}
+            />
+          ),
         };
       default:
         return null;
@@ -50,8 +70,11 @@ export const SettingsMenu: FC<SettingsMenuProps> = ({ expanded }) => {
           expanded={expanded}
           onAnimationComplete={() => setMenuAnimDone(true)}
         >
-          {settings.map((setting) => (
-            <SettingsMenuItem {...displayMenuItemByType(setting)} />
+          {settings.map((setting, index) => (
+            <SettingsMenuItem
+              key={"compontent-" + index}
+              {...displayMenuItemByType(setting)}
+            />
           ))}
         </SettingsCard>
       )}

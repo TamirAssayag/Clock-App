@@ -1,4 +1,4 @@
-import React, { FC } from "react";
+import React, { FC, useEffect } from "react";
 import { userSettings } from "../../../zustand";
 import { AnimatePresence, Variants } from "framer-motion";
 import "./Background.scss";
@@ -35,6 +35,23 @@ export const Background: FC = () => {
 
   // If no selected user background, use the default background (first in current Images array)
   const bg = data.bg ?? backgroundImages[0];
+
+  const initiateUserBgSettings = () => {
+    const docElement = document.documentElement;
+    const { background_color: bg_color, background_opacity: bg_opacity } = data;
+
+    if (!bg_color) return;
+    if (!bg_opacity) return;
+
+    if (bg_color || bg_opacity) {
+      docElement.style.setProperty("--background-hue", bg_color);
+      docElement.style.setProperty("--background-fade", bg_opacity);
+    }
+  };
+
+  useEffect(() => {
+    initiateUserBgSettings();
+  }, []);
 
   return (
     <>

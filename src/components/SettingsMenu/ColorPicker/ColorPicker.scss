@@ -1,4 +1,4 @@
-.hue-colors {
+.color-picker {
   &__wrapper {
     display: flex;
     flex-wrap: wrap;
@@ -8,5 +8,20 @@
     height: 15px;
     width: 15px;
     cursor: pointer;
+
+    &:nth-of-type(1) {
+      border: 1px solid white;
+      overflow: hidden;
+      &::before {
+        display: flex;
+        line-height: 0.7;
+        align-items: center;
+        justify-content: center;
+        content: "X";
+        font-size: 1.3rem;
+        font-weight: 200;
+        color: rgb(219, 219, 219);
+      }
+    }
   }
 }

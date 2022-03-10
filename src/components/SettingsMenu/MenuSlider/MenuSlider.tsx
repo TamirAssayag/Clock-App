@@ -1,32 +1,46 @@
+import classNames from "classnames";
 import Slider from "rc-slider";
-import React from "react";
+import React, { FC } from "react";
+import { isNullOrUndefined } from "../../../utils";
+import { userSettings } from "../../../zustand";
 
-// interface MenuSliderProps {
-//   data: any;
-//   onChange: (value: number) => void;
-// }
+interface MenuSliderProps {
+  data: any;
+  onChange: (value: number) => void;
+  sliderStyle?: {};
+}
 
-export const MenuSlider = () => {
-  const [opacityValue, setOpacityValue] = React.useState(0);
+export const MenuSlider: FC<MenuSliderProps> = ({
+  data,
+  sliderStyle,
+  onChange,
+}) => {
+  const { data: settings } = userSettings();
 
-  const onSliderChange = (value) => {
-    const actualVal = value / 100;
-    setOpacityValue(actualVal);
-    const mainBgEl = document.querySelector(".main__bg") as HTMLElement;
-    mainBgEl.style.setProperty("--background-fade", `${actualVal}`);
+  const onSliderChange = (value: number) => onChange(value / 100);
+
+  const sliderValue = () => {
+    const value = settings[data.id];
+    if (value) {
+      if (value > 0 && isNullOrUndefined(settings.background_color)) return 0;
+      return value * 100;
+    } else {
+      return 0;
+    }
   };
 
   return (
-    <div className="opacity-slider">
+    <div
+      className={classNames("menu-slider", {
+        disabled: isNullOrUndefined(settings.background_color),
+      })}
+    >
       <Slider
-        dotStyle={{ backgroundColor: "black" }}
-        handleStyle={{ backgroundColor: "black", borderColor: "gray" }}
-        railStyle={{ backgroundColor: "white" }}
-        trackStyle={{ backgroundColor: "black" }}
+        {...sliderStyle}
         onChange={onSliderChange}
-        value={opacityValue * 100}
+        value={sliderValue()}
       />
-      <span>{(opacityValue * 100).toFixed(0)}</span>
+      <span>{sliderValue().toFixed(0)}</span>
     </div>
   );
 };
