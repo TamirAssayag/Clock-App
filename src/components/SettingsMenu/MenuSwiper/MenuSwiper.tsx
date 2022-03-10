@@ -4,7 +4,7 @@ import { SwiperSlide } from "swiper/react";
 import { userSettings } from "../../../zustand";
 import { SwiperUI, UiImage } from "../../Ui";
 
-export const ChangeBackground = () => {
+export const MenuSwiper = () => {
   const { setData, backgroundImages } = userSettings((state) => state);
   const [loadedImages, setLoadedImages] = React.useState([]);
 

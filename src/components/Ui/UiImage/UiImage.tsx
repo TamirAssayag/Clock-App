@@ -2,10 +2,11 @@ import { motion } from "framer-motion";
 import React, { FC } from "react";
 
 interface IProps {
-  id?: string;
   imgSrc: string;
-  onLoad?: () => void;
 
+  // Optional
+  id?: string;
+  onLoad?: () => void;
   variants?: {} | undefined;
   animate?: string;
   initial?: string;

@@ -1,6 +1,6 @@
 .main__bg {
   --background-hue: 30, 0, 255;
-  --background-fade: 0.5;
+  --background-fade: 0;
   pointer-events: none;
 
   // due-tone
@@ -19,10 +19,9 @@
   &::after {
     content: "";
     position: absolute;
+    background: rgba(var(--background-hue), var(--background-fade));
     inset: 0;
     z-index: -1;
-    // mix-blend-mode: hue;
-    opacity: 0.3;
-    background-color: black;
+    mix-blend-mode: hue;
   }
 }

@@ -69,3 +69,12 @@ body {
     color: #fff;
   }
 }
+
+.rc-slider {
+  &-handle {
+    transition: box-shadow 0.3s cubic-bezier(0.23, 1, 0.32, 1);
+    &:focus {
+      box-shadow: 0 0 0 3px #cfcdcf !important;
+    }
+  }
+}

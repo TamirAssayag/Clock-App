@@ -1,0 +1,12 @@
+.hue-colors {
+  &__wrapper {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 0.5rem;
+  }
+  &__item {
+    height: 15px;
+    width: 15px;
+    cursor: pointer;
+  }
+}

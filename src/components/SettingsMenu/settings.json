@@ -3,6 +3,7 @@
     {
       "id": "background",
       "type": "swiper",
+      "title": "Change Background",
       "optionsPerView": 3.5,
       "options": [
         {
@@ -87,9 +88,10 @@
     },
     {
       "id": "background-color",
-      "type": "swiper",
+      "type": "hue",
+      "title": "Pick Hue Color",
       "optionsPerView": 7.5,
-      "default": "#ffffff",
+      "default": "unset",
       "options": [
         {
           "id": 1,
@@ -99,10 +101,11 @@
     },
     {
       "id": "background-opacity",
-      "type": "slider",
+      "type": "hue-slider",
+      "title": "Change Hue Opacity",
       "min": 0,
       "max": 1,
-      "default": 0.6
+      "default": 50
     }
   ]
 }

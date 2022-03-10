@@ -3,10 +3,6 @@ import React, { FC, useEffect } from "react";
 import { RefreshIcon } from "../";
 import "./Quote.scss";
 
-/* interface QuoteProps {
-  toggledUI: boolean;
-} */
-
 type QuoteType = {
   id: number;
   en: string;

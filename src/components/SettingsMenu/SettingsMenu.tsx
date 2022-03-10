@@ -1,9 +1,14 @@
 import React, { FC } from "react";
-import { AnimatePresence } from "framer-motion";
-import { SettingsCard } from "./SettingsCard";
-import { SettingsMenuItem } from "./SettingsMenuItem";
-import { ChangeBackground } from "./ChangeBackground";
+import { AnimatePresence, motion } from "framer-motion";
+import "rc-slider/assets/index.css";
+import settingsJson from "./settings.json";
 import "./SettingsMenu.scss";
+
+import { SettingsMenuItem } from "./SettingsMenuItem";
+import { SettingsCard } from "./SettingsCard";
+import { MenuSwiper } from "./MenuSwiper";
+import { ColorPicker } from "./ColorPicker";
+import { MenuSlider } from "./MenuSlider";
 
 interface SettingsMenuProps {
   expanded?: boolean;
@@ -12,6 +17,32 @@ interface SettingsMenuProps {
 export const SettingsMenu: FC<SettingsMenuProps> = ({ expanded }) => {
   const [menuAnimDone, setMenuAnimDone] = React.useState(false);
 
+  const settings = settingsJson.settings;
+
+  const displayMenuItemByType = ({ ...props }) => {
+    switch (props.type) {
+      case "swiper":
+        return {
+          itemTitle: props.title,
+          itemContent: menuAnimDone && <MenuSwiper />,
+        };
+      case "hue":
+        return {
+          className: "py-1",
+          itemTitle: props.title,
+          itemContent: <ColorPicker />,
+        };
+      case "hue-slider":
+        return {
+          className: "py-1",
+          itemTitle: props.title,
+          itemContent: <MenuSlider />,
+        };
+      default:
+        return null;
+    }
+  };
+
   return (
     <AnimatePresence>
       {expanded && (
@@ -19,10 +50,9 @@ export const SettingsMenu: FC<SettingsMenuProps> = ({ expanded }) => {
           expanded={expanded}
           onAnimationComplete={() => setMenuAnimDone(true)}
         >
-          <SettingsMenuItem
-            itemTitle="Change Background"
-            itemContent={menuAnimDone && <ChangeBackground />}
-          />
+          {settings.map((setting) => (
+            <SettingsMenuItem {...displayMenuItemByType(setting)} />
+          ))}
         </SettingsCard>
       )}
     </AnimatePresence>
