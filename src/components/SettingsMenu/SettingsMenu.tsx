@@ -3,12 +3,13 @@ import { AnimatePresence } from "framer-motion";
 import "rc-slider/assets/index.css";
 import settingsJson from "./settings.json";
 import "./SettingsMenu.scss";
-
-import { SettingsMenuItem } from "./SettingsMenuItem";
-import { SettingsCard } from "./SettingsCard";
-import { MenuSwiper } from "./MenuSwiper";
-import { ColorPicker } from "./ColorPicker";
-import { MenuSlider } from "./MenuSlider";
+import {
+  SettingsMenuItem,
+  SettingsCard,
+  MenuSwiper,
+  ColorPicker,
+  MenuSlider,
+} from "../";
 import { userSettings } from "../../zustand";
 import { isNullOrUndefined } from "../../utils";
 
