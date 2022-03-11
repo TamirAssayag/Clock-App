@@ -35,7 +35,6 @@ export const MenuSwiper = () => {
   };
 
   const handleSwiperSlideOnClick = (id: number) => () => {
-    console.log("onclick");
     setData({ bg: backgroundImages.find((image) => image.id === id) });
   };
 
@@ -49,14 +48,8 @@ export const MenuSwiper = () => {
     <SwiperUI {...swiperProps}>
       {backgroundImages.map((img, i) => (
         <SwiperSlide key={img.id} onClick={handleSwiperSlideOnClick(img.id)}>
-          <div
-            className={classNames([
-              "swiper-img-skeleton",
-              {
-                active: swiperProps.activeSlideIndex === i,
-              },
-            ])}
-          >
+          {/* prettier-ignore */}
+          <div className={classNames(["swiper-img-skeleton",{ active: swiperProps.activeSlideIndex === i }])}>
             <UiImage
               variants={imgVariants}
               animate={loadedImages.includes(img.id) ? "active" : "inactive"}
