@@ -16,7 +16,14 @@ import {
   SunIcon,
 } from "../";
 
-export const Main: FC = () => {
+interface MainProps {
+  onClose: () => void;
+}
+
+export const Main: FC<MainProps> = ({ onClose }) => {
+  const isNight = userSettings((state) => state.isNight);
+  const setIsNight = userSettings((state) => state.setIsNight);
+
   const [toggleUi, setToggleUi] = React.useState(false);
   const [time, setTime] = React.useState(new Date().getTime());
   const { isMobile } = useMobile();
@@ -29,8 +36,6 @@ export const Main: FC = () => {
     fetchWorldTimeApi,
     setIsLoading,
   } = userGeoStore((state) => state);
-
-  const { isNight } = userSettings();
 
   React.useEffect(() => {
     toggleClass(toggleUi, "ui-expanded");
@@ -83,8 +88,7 @@ export const Main: FC = () => {
 
   useEffect(() => {
     startProcedure();
-
-    const intervalId = setInterval(() => {
+    const intervalId = setInterval(function () {
       setTime(new Date().getTime());
     }, 1000);
 
@@ -92,7 +96,10 @@ export const Main: FC = () => {
   }, []);
 
   return (
-    <div className={classNames("main", { "main__toggled-ui": toggleUi })}>
+    <div
+      className={classNames("main", { "main__toggled-ui": toggleUi })}
+      onClick={onClose}
+    >
       <div className="main__bg">
         <Background />
       </div>

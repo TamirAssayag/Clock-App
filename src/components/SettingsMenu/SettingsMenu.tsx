@@ -75,6 +75,7 @@ export const SettingsMenu: FC<SettingsMenuProps> = ({ expanded }) => {
           {settings.map((setting, index) => (
             <SettingsMenuItem
               key={"compontent-" + index}
+              className={setting.className}
               {...displayMenuItemByType(setting)}
             />
           ))}

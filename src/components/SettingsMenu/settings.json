@@ -3,6 +3,7 @@
     {
       "id": "background",
       "type": "swiper",
+      "className": "swiper-container",
       "title": "Change Background",
       "optionsPerView": 3.5,
       "options": [
