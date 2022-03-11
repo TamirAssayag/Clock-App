@@ -24,7 +24,7 @@ export const MenuSwiper = () => {
     slidesOffsetBefore: 16,
   };
 
-  const handleBgChange = (id: number) => {
+  const handleSwiperSlideOnClick = (id: number) => {
     const selected = backgroundImages.find((image) => image.id === id);
     return () => setData({ bg: selected });
   };
@@ -38,7 +38,7 @@ export const MenuSwiper = () => {
   return (
     <SwiperUI {...swiperProps}>
       {backgroundImages.map((img) => (
-        <SwiperSlide key={img.id} onClick={handleBgChange(img.id)}>
+        <SwiperSlide key={img.id} onClick={handleSwiperSlideOnClick(img.id)}>
           <div className="swiper-img-skeleton">
             <UiImage
               variants={imgVariants}

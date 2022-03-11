@@ -4,22 +4,25 @@ import { AnimatePresence, Variants } from "framer-motion";
 import "./Background.scss";
 import { UiImage } from "../UiImage";
 import { useMobile } from "../../../hooks";
+import useDidUpdateEffect from "../../../hooks/useDidUpdateEffect";
 
-export const Background: FC = () => {
+interface BackgroundProps {}
+
+export const Background: FC<BackgroundProps> = () => {
   const { isMobile } = useMobile();
 
   const variants: Variants = {
     enter: {
-      scale: !isMobile ? 0.7 : "unset",
+      scale: !isMobile ? 0.7 : 1,
       opacity: 0,
     },
     center: {
       opacity: 1,
-      scale: !isMobile ? 1 : "unset",
+      scale: !isMobile ? 1 : 1,
     },
     exit: {
       opacity: 0,
-      scale: !isMobile ? 1.2 : "unset",
+      scale: !isMobile ? 1.2 : 1,
     },
   };
 
@@ -34,7 +37,7 @@ export const Background: FC = () => {
     },
   };
 
-  const { data, backgroundImages } = userSettings();
+  const { data, backgroundImages, setData, isNight } = userSettings();
 
   // If no selected user background, use the default background (first in current Images array)
   const bg = data.bg ?? backgroundImages[0];
@@ -55,6 +58,10 @@ export const Background: FC = () => {
   useEffect(() => {
     initiateUserBgSettings();
   }, []);
+
+  useDidUpdateEffect(() => {
+    setData({ ...data, bg: backgroundImages[0] });
+  }, [isNight]);
 
   return (
     <>
