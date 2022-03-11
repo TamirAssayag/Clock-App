@@ -1,26 +1,61 @@
 .color-picker {
+  overflow: auto;
+  max-height: 115px;
+
+  //scrollbar
+  &::-webkit-scrollbar {
+    width: 5px;
+    height: 5px;
+  }
+  &::-webkit-scrollbar-track {
+    background: transparent;
+  }
+  &::-webkit-scrollbar-thumb {
+    background: darkgray;
+    border-radius: 5px;
+  }
+  &::-webkit-scrollbar-thumb:hover {
+    background: darkgray;
+  }
+
+  //scrollbar
   &__wrapper {
     display: flex;
     flex-wrap: wrap;
-    gap: 0.5rem;
+    gap: 0.7rem;
   }
   &__item {
-    height: 15px;
-    width: 15px;
+    height: 28px;
+    width: 28px;
     cursor: pointer;
+    border-radius: 0.2rem;
+    transition: all 0.2s ease-in-out;
+
+    &:hover {
+      opacity: 0.8;
+    }
+    &:active {
+      transform: scale(0.95);
+    }
 
     &:nth-of-type(1) {
-      border: 1px solid white;
       overflow: hidden;
+      border: 1px solid black;
       &::before {
         display: flex;
         line-height: 0.7;
         align-items: center;
         justify-content: center;
         content: "X";
-        font-size: 1.3rem;
+        font-size: 2.3rem;
         font-weight: 200;
-        color: rgb(219, 219, 219);
+        color: black;
+        .night & {
+          color: white;
+        }
+      }
+      .night & {
+        border: 1px solid white;
       }
     }
   }

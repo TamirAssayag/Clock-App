@@ -1,3 +1,4 @@
+import classNames from "classnames";
 import { Variants } from "framer-motion";
 import React from "react";
 import { SwiperSlide } from "swiper/react";
@@ -5,7 +6,7 @@ import { userSettings } from "../../../zustand";
 import { SwiperUI, UiImage } from "../../Ui";
 
 export const MenuSwiper = () => {
-  const { setData, backgroundImages } = userSettings((state) => state);
+  const { data, setData, backgroundImages } = userSettings((state) => state);
   const [loadedImages, setLoadedImages] = React.useState([]);
 
   const imgVariants: Variants = {
@@ -22,11 +23,20 @@ export const MenuSwiper = () => {
     slidesPerView: 35,
     slidesOffsetAfter: 16,
     slidesOffsetBefore: 16,
+    get activeSlideIndex() {
+      const activeIndex = backgroundImages.findIndex(
+        (image) => image.id === data.bg.id
+      );
+      return activeIndex === -1 ? 0 : activeIndex;
+    },
+    get initialSlide() {
+      return this.activeSlideIndex;
+    },
   };
 
-  const handleSwiperSlideOnClick = (id: number) => {
-    const selected = backgroundImages.find((image) => image.id === id);
-    return () => setData({ bg: selected });
+  const handleSwiperSlideOnClick = (id: number) => () => {
+    console.log("onclick");
+    setData({ bg: backgroundImages.find((image) => image.id === id) });
   };
 
   const addToLoadedImages = (id: number) => {
@@ -37,9 +47,16 @@ export const MenuSwiper = () => {
 
   return (
     <SwiperUI {...swiperProps}>
-      {backgroundImages.map((img) => (
+      {backgroundImages.map((img, i) => (
         <SwiperSlide key={img.id} onClick={handleSwiperSlideOnClick(img.id)}>
-          <div className="swiper-img-skeleton">
+          <div
+            className={classNames([
+              "swiper-img-skeleton",
+              {
+                active: swiperProps.activeSlideIndex === i,
+              },
+            ])}
+          >
             <UiImage
               variants={imgVariants}
               animate={loadedImages.includes(img.id) ? "active" : "inactive"}

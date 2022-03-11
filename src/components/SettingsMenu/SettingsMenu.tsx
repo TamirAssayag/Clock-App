@@ -42,7 +42,7 @@ export const SettingsMenu: FC<SettingsMenuProps> = ({ expanded }) => {
         };
       case "color-picker":
         return {
-          className: "py-1",
+          className: "px-05",
           itemTitle: item.title,
           itemContent: (
             <ColorPicker colors={item.options} onChange={onChange(item)} />
@@ -50,7 +50,7 @@ export const SettingsMenu: FC<SettingsMenuProps> = ({ expanded }) => {
         };
       case "slider":
         return {
-          className: "py-1",
+          className: "px-1",
           itemTitle: item.title,
           itemContent: (
             <MenuSlider

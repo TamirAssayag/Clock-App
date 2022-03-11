@@ -1,22 +1,23 @@
 import React, { FC } from "react";
 import { Mousewheel } from "swiper";
-import { Swiper } from "swiper/react";
+import { Swiper, SwiperProps } from "swiper/react";
 import "swiper/css";
 
-interface SwiperProps {
+type SwiperUiProps = {
   children?: any;
   spaceBetween?: number;
   slidesPerView?: number;
   slidesOffsetAfter?: number;
   slidesOffsetBefore?: number;
-}
+} & SwiperProps;
 
-export const SwiperUI: FC<SwiperProps> = ({
+export const SwiperUI: FC<SwiperUiProps> = ({
   children,
   spaceBetween,
   slidesPerView,
   slidesOffsetAfter,
   slidesOffsetBefore,
+  ...otherProps
 }) => {
   return (
     <Swiper
@@ -39,6 +40,7 @@ export const SwiperUI: FC<SwiperProps> = ({
           slidesPerView: 3.5,
         },
       }}
+      {...otherProps}
     >
       {children}
     </Swiper>
