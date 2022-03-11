@@ -1,5 +1,6 @@
 import { motion } from "framer-motion";
 import React, { FC } from "react";
+import { getImageUrl } from "../../../utils";
 
 interface IProps {
   imgSrc: string;
@@ -26,7 +27,7 @@ export const UiImage: FC<IProps> = ({
 }) => {
   return (
     <motion.img
-      src={require("../../../assets/images/" + imgSrc)}
+      src={getImageUrl(imgSrc)}
       onLoad={onLoad}
       alt=""
       variants={variants}

@@ -44,3 +44,7 @@ export const toggleClass = (condition: boolean, className: string) => {
     }
   }
 };
+
+export const getImageUrl = (name) => {
+  return new URL(`../assets/images/${name}`, import.meta.url).href;
+};

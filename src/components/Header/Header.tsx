@@ -1,8 +1,8 @@
 import React, { FC } from "react";
 import { SettingsMenu } from "../SettingsMenu/SettingsMenu";
-import { SettingsIcon } from "../";
 import { motion } from "framer-motion";
 import "./Header.scss";
+import { SettingsIcon } from "../SVG";
 
 interface HeaderProps {
   expanded?: boolean;

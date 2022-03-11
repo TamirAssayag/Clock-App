@@ -40,7 +40,6 @@ type UserGeoStore = {
   isLoading: boolean;
   setIsLoading: (isLoading: boolean) => void;
 
-
   fetchGeoApi: () => Promise<GeoIpState>;
   fetchWorldTimeApi: (ip: GeoIpState["ip"]) => Promise<WorldTimeState>;
 
@@ -57,9 +56,8 @@ const store = (set, get) =>
     isLoading: false,
     setIsLoading: (isLoading: boolean) => set(() => ({ isLoading })),
 
-
     fetchGeoApi: async () => {
-      const API_KEY: string = process.env.REACT_APP_GEO_IP_KEY;
+      const API_KEY = import.meta.env.VITE_GEO_IP_KEY as string;
       const { data } = await axios.get<GeoIpState>(
         `https://api.freegeoip.app/json/?apikey=${API_KEY}`
       );
