@@ -153,7 +153,7 @@
       "title": "Change Hue Opacity",
       "min": 0,
       "max": 1,
-      "default": 50,
+      "default": 0.5,
       "style": {
         "dotStyle": { "backgroundColor": "black" },
         "handleStyle": { "backgroundColor": "black", "borderColor": "gray" },

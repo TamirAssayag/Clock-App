@@ -10,6 +10,7 @@ import { MenuSwiper } from "./MenuSwiper";
 import { ColorPicker } from "./ColorPicker";
 import { MenuSlider } from "./MenuSlider";
 import { userSettings } from "../../zustand";
+import { isNullOrUndefined } from "../../utils";
 
 interface SettingsMenuProps {
   expanded?: boolean;
@@ -20,7 +21,7 @@ export const SettingsMenu: FC<SettingsMenuProps> = ({ expanded }) => {
 
   const settings = settingsJson.settings;
 
-  const { setData } = userSettings();
+  const { setData, data: getUserSettings } = userSettings();
 
   const onChange = (data) => {
     return (val) => {
@@ -52,6 +53,7 @@ export const SettingsMenu: FC<SettingsMenuProps> = ({ expanded }) => {
           itemTitle: item.title,
           itemContent: (
             <MenuSlider
+              disabled={isNullOrUndefined(getUserSettings.background_color)}
               sliderStyle={item.style}
               data={item}
               onChange={onChange(item)}
