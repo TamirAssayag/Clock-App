@@ -25,7 +25,7 @@ export const MenuSwiper = () => {
     slidesOffsetBefore: 16,
     get activeSlideIndex() {
       const activeIndex = backgroundImages.findIndex(
-        (image) => image.id === data.bg.id
+        (image) => image.id === data.bg?.id
       );
       return activeIndex === -1 ? 0 : activeIndex;
     },
