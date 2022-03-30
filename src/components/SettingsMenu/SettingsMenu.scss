@@ -3,11 +3,11 @@
 .settings-menu {
   --item-height: 90px;
 
-  backdrop-filter: blur(5px);
+  backdrop-filter: blur(2px);
   background: linear-gradient(
     0deg,
-    rgba(255, 255, 255, 0.7) 0%,
-    rgba(0, 0, 0, 0) 100%
+    rgba(255, 255, 255, 0.8) 0%,
+    rgba(255, 255, 255, 0.6) 100%
   );
   width: 500px;
   margin-left: auto;

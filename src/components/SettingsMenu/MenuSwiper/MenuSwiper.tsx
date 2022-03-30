@@ -18,19 +18,23 @@ export const MenuSwiper = () => {
     },
   };
 
-  const swiperProps = {
-    spaceBetween: 10,
-    slidesPerView: 35,
-    slidesOffsetAfter: 16,
-    slidesOffsetBefore: 16,
+  const { activeSlideIndex } = {
     get activeSlideIndex() {
       const activeIndex = backgroundImages.findIndex(
         (image) => image.id === data.bg?.id
       );
       return activeIndex === -1 ? 0 : activeIndex;
     },
+  };
+
+  const swiperProps = {
+    spaceBetween: 10,
+    slidesPerView: 35,
+    slidesOffsetAfter: 16,
+    slidesOffsetBefore: 16,
+
     get initialSlide() {
-      return this.activeSlideIndex;
+      return activeSlideIndex;
     },
   };
 
@@ -40,7 +44,6 @@ export const MenuSwiper = () => {
 
   const addToLoadedImages = (id: number) => {
     if (loadedImages.includes(id)) return;
-
     return () => setLoadedImages([...loadedImages, id]);
   };
 
@@ -49,7 +52,7 @@ export const MenuSwiper = () => {
       {backgroundImages.map((img, i) => (
         <SwiperSlide key={img.id} onClick={handleSwiperSlideOnClick(img.id)}>
           {/* prettier-ignore */}
-          <div className={classNames(["swiper-img-skeleton",{ active: swiperProps.activeSlideIndex === i }])}>
+          <div className={classNames(["swiper-img-skeleton",{ active: activeSlideIndex === i }])}>
             <UiImage
               variants={imgVariants}
               animate={loadedImages.includes(img.id) ? "active" : "inactive"}

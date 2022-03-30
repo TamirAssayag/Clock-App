@@ -1,4 +1,4 @@
-import React from "react";
+import React, { Suspense } from "react";
 import { motion } from "framer-motion";
 import classNames from "classnames";
 import { transition, variants } from "../framer";
@@ -21,7 +21,6 @@ export const SettingsCard = ({ expanded, children, onAnimationComplete }) => {
           Settings
         </motion.h3>
       </motion.div>
-
       {children}
     </motion.div>
   );

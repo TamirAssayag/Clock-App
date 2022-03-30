@@ -15,6 +15,7 @@ import {
   MoonIcon,
   SunIcon,
 } from "../";
+import { Spinner } from "../Ui/Spinner/Spinner";
 
 interface MainProps {
   onClose: () => void;
@@ -22,15 +23,15 @@ interface MainProps {
 
 export const Main: FC<MainProps> = ({ onClose }) => {
   const isNight = userSettings((state) => state.isNight);
-  const setIsNight = userSettings((state) => state.setIsNight);
 
   const [toggleUi, setToggleUi] = React.useState(false);
   const [time, setTime] = React.useState(new Date().getTime());
   const { isMobile } = useMobile();
 
   const {
-    lastUpdated,
     data,
+    isLoading,
+    lastUpdated,
     setData,
     fetchGeoApi,
     fetchWorldTimeApi,
@@ -57,6 +58,7 @@ export const Main: FC<MainProps> = ({ onClose }) => {
       const geoIp = await fetchGeoApi();
       const worldTime = await fetchWorldTimeApi(geoIp.ip);
       setData({ ...geoIp, ...worldTime });
+      setIsLoading(false);
     } catch {
       console.log("Sorry");
     } finally {
@@ -96,55 +98,61 @@ export const Main: FC<MainProps> = ({ onClose }) => {
   }, []);
 
   return (
-    <div
-      className={classNames("main", { "main__toggled-ui": toggleUi })}
-      onClick={onClose}
-    >
-      <div className="main__bg">
-        <Background />
-      </div>
-      <div className="main__wrapper">
-        <div className="main__container">
-          <Quote />
-          <div className="main__bottom">
-            <div className="main__bottom-container">
-              <div className="main__bottom-container-left">
-                <div className="status">
-                  <div className="status__icon">
-                    <greeting.icon />
+    <>
+      {!isLoading ? (
+        <div
+          className={classNames("main", { "main__toggled-ui": toggleUi })}
+          onClick={onClose}
+        >
+          <div className="main__bg">
+            <Background />
+          </div>
+          <div className="main__wrapper">
+            <div className="main__container">
+              <Quote />
+              <div className="main__bottom">
+                <div className="main__bottom-container">
+                  <div className="main__bottom-container-left">
+                    <div className="status">
+                      <div className="status__icon">
+                        <greeting.icon />
+                      </div>
+                      <p>
+                        {greeting.text}
+                        {!isMobile ? ", It's Currently" : ""}
+                      </p>
+                    </div>
+                    <div className="time">
+                      <header className="time__wrapper">
+                        {/* <span className="time__hours">{new Date().getHours()}</span> */}
+                        <h1 className="time__minutes">
+                          {dayjs(time).format("HH:mm")}
+                        </h1>
+                        <span className="time__abbreviation">
+                          {data.abbreviation}
+                        </span>
+                      </header>
+                      <span className="time__city">
+                        IN {data.city}, {data.country_code}
+                      </span>
+                    </div>
                   </div>
-                  <p>
-                    {greeting.text}
-                    {!isMobile ? ", It's Currently" : ""}
-                  </p>
+                  <div className="main__bottom-container-right">
+                    <UiButton
+                      text={toggleUi ? "Less" : "More"}
+                      icon={toggleUi ? <ArrowUpIcon /> : <ArrowDownIcon />}
+                      onClick={handleToggleUi}
+                    />
+                  </div>
                 </div>
-                <div className="time">
-                  <header className="time__wrapper">
-                    {/* <span className="time__hours">{new Date().getHours()}</span> */}
-                    <h1 className="time__minutes">
-                      {dayjs(time).format("HH:mm")}
-                    </h1>
-                    <span className="time__abbreviation">
-                      {data.abbreviation}
-                    </span>
-                  </header>
-                  <span className="time__city">
-                    IN {data.city}, {data.country_code}
-                  </span>
-                </div>
-              </div>
-              <div className="main__bottom-container-right">
-                <UiButton
-                  text={toggleUi ? "Less" : "More"}
-                  icon={toggleUi ? <ArrowUpIcon /> : <ArrowDownIcon />}
-                  onClick={handleToggleUi}
-                />
               </div>
             </div>
           </div>
+          <MoreInfo isNightTime={isNight} data={data} toggleUi={toggleUi} />
         </div>
-      </div>
-      <MoreInfo isNightTime={isNight} data={data} toggleUi={toggleUi} />
-    </div>
+      ) : (
+        <Spinner />
+      )}
+    </>
   );
 };

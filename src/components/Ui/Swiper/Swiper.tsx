@@ -27,6 +27,7 @@ export const SwiperUI: FC<SwiperUiProps> = ({
       slidesOffsetAfter={slidesOffsetAfter || 16}
       slidesOffsetBefore={slidesOffsetBefore || 16}
       slideToClickedSlide
+      {...(otherProps as SwiperProps)}
       freeMode={{
         enabled: false,
         sticky: true,
@@ -40,7 +41,6 @@ export const SwiperUI: FC<SwiperUiProps> = ({
           slidesPerView: 3.5,
         },
       }}
-      {...otherProps}
     >
       {children}
     </Swiper>
