@@ -59,7 +59,7 @@ const store = (set, get) =>
     fetchGeoApi: async () => {
       const API_KEY = import.meta.env.VITE_GEO_IP_KEY as string;
       const { data } = await axios.get<GeoIpState>(
-        `https://api.freegeoip.app/json/?apikey=${API_KEY}`
+        `https://api.ipbase.com/json/?apikey=${API_KEY}`
       );
       return data;
     },
