@@ -3,8 +3,7 @@ import { checkIfNight, userSettings } from "../../../zustand";
 import { AnimatePresence, Variants } from "framer-motion";
 import "./Background.scss";
 import { UiImage } from "../UiImage";
-import { useMobile } from "../../../hooks";
-import useDidUpdateEffect from "../../../hooks/useDidUpdateEffect";
+import { useMobile, useDidUpdateEffect } from "../../../hooks";
 
 interface BackgroundProps {}
 

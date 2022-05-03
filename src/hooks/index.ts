@@ -1,1 +1,3 @@
-export { default as useMobile } from "./useMobile";
+// @index('./*', f => `export * from '${f.path}'`)
+export * from "./useDidUpdateEffect";
+export * from "./useMobile";

@@ -1,4 +1,5 @@
 import axios from "axios";
+import { AnimatePresence, motion, Variants } from "framer-motion";
 import React, { FC, useEffect } from "react";
 import { RefreshIcon } from "../";
 import "./Quote.scss";
@@ -7,6 +8,11 @@ type QuoteType = {
   id: number;
   en: string;
   author: string;
+};
+
+const variants: Variants = {
+  animate: { opacity: 1 },
+  exit: { opacity: 0 },
 };
 
 export const Quote: FC = () => {
@@ -29,10 +35,20 @@ export const Quote: FC = () => {
 
   return (
     <div className="quote">
-      <div className="quote__inner" role="contentinfo">
-        <p className="quote__text">"{quote.en}"</p>
-        <p className="quote__author">{quote.author}</p>
-      </div>
+      <AnimatePresence exitBeforeEnter>
+        <motion.div
+          key={quote.id}
+          className="quote__inner"
+          role="contentinfo"
+          variants={variants}
+          animate="animate"
+          exit="exit"
+          initial="exit"
+        >
+          <p className="quote__text">"{quote.en}"</p>
+          <p className="quote__author">{quote.author}</p>
+        </motion.div>
+      </AnimatePresence>
       <div className="quote__refresh-icon">
         <RefreshIcon onClick={fetchRandomQuote} />
       </div>

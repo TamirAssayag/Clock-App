@@ -3,9 +3,7 @@ import classNames from "classnames";
 import { userGeoStore, userSettings } from "../../zustand";
 import { toggleClass } from "../../utils";
 import { useMobile } from "../../hooks";
-import { Background } from "../Ui";
 import "./Main.scss";
-import dayjs from "dayjs";
 import {
   UiButton,
   Quote,
@@ -14,8 +12,10 @@ import {
   ArrowUpIcon,
   MoonIcon,
   SunIcon,
-} from "../";
-import { Spinner } from "../Ui/Spinner/Spinner";
+  Background,
+  Spinner,
+} from "../../components";
+import dayjs from "dayjs";
 
 interface MainProps {
   onClose: () => void;

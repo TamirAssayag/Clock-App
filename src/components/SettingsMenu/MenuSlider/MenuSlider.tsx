@@ -1,8 +1,7 @@
 import classNames from "classnames";
 import Slider from "rc-slider";
 import React, { FC } from "react";
-import useDidUpdateEffect from "../../../hooks/useDidUpdateEffect";
-import { isNullOrUndefined } from "../../../utils";
+import { useDidUpdateEffect } from "../../../hooks";
 import { userSettings } from "../../../zustand";
 
 interface MenuSliderProps {

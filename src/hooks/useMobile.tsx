@@ -17,7 +17,7 @@ const checkWidth = (width) => {
   }
 };
 
-const useMobile = () => {
+export const useMobile = () => {
   const [isMobile, setIsMd] = useState(() => checkWidth(window.innerWidth));
   const [isMax, setIsMax] = useState(() => checkMaxWidth(window.innerWidth));
 
@@ -37,5 +37,3 @@ const useMobile = () => {
 
   return { isMobile, isMax };
 };
-
-export default useMobile;
