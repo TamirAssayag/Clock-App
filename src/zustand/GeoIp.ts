@@ -57,7 +57,7 @@ const store = (set, get) =>
     setIsLoading: (isLoading: boolean) => set(() => ({ isLoading })),
 
     fetchGeoApi: async () => {
-      const API_KEY = import.meta.env.VITE_GEO_IP_KEY as string;
+      const API_KEY = import.meta.env.VITE_GEO_IP_KEY;
       const { data } = await axios.get<GeoIpState>(
         `https://api.ipbase.com/json/?apikey=${API_KEY}`
       );
