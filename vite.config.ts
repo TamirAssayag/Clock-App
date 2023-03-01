@@ -7,6 +7,7 @@ export default defineConfig({
     outDir: "build",
   },
   plugins: [reactRefresh(), svgrPlugin()],
+  server: { open: true },
   resolve: {
     alias: [
       {

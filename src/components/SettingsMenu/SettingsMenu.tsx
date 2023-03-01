@@ -1,4 +1,4 @@
-import React, { FC } from "react";
+import React, { FC, useCallback, useMemo } from "react";
 import { AnimatePresence } from "framer-motion";
 import "rc-slider/assets/index.css";
 import settingsJson from "./settings.json";
@@ -33,38 +33,41 @@ export const SettingsMenu: FC<SettingsMenuProps> = ({ expanded }) => {
     };
   };
 
-  const displayMenuItemByType = ({ ...item }) => {
-    switch (item.type) {
-      case "swiper":
-        return {
-          itemTitle: item.title,
-          itemContent: menuAnimDone && <MenuSwiper />,
-        };
-      case "color-picker":
-        return {
-          className: "px-05",
-          itemTitle: item.title,
-          itemContent: (
-            <ColorPicker colors={item.options} onChange={onChange(item)} />
-          ),
-        };
-      case "slider":
-        return {
-          className: "px-1",
-          itemTitle: item.title,
-          itemContent: (
-            <MenuSlider
-              disabled={isNullOrUndefined(getUserSettings.background_color)}
-              sliderStyle={item.style}
-              data={item}
-              onChange={onChange(item)}
-            />
-          ),
-        };
-      default:
-        return null;
-    }
-  };
+  const displayMenuItemByType = useCallback(
+    ({ ...item }) => {
+      switch (item.type) {
+        case "swiper":
+          return {
+            itemTitle: item.title,
+            itemContent: menuAnimDone && <MenuSwiper />,
+          };
+        case "color-picker":
+          return {
+            className: "px-05",
+            itemTitle: item.title,
+            itemContent: (
+              <ColorPicker colors={item.options} onChange={onChange(item)} />
+            ),
+          };
+        case "slider":
+          return {
+            className: "px-1",
+            itemTitle: item.title,
+            itemContent: (
+              <MenuSlider
+                disabled={isNullOrUndefined(getUserSettings.background_color)}
+                sliderStyle={item.style}
+                data={item}
+                onChange={onChange(item)}
+              />
+            ),
+          };
+        default:
+          return null;
+      }
+    },
+    [menuAnimDone]
+  );
 
   return (
     <AnimatePresence>

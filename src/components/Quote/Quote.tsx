@@ -5,8 +5,8 @@ import { RefreshIcon } from "../";
 import "./Quote.scss";
 
 type QuoteType = {
-  id: number;
-  en: string;
+  _id: number;
+  content: string;
   author: string;
 };
 
@@ -21,7 +21,7 @@ export const Quote: FC = () => {
   const fetchRandomQuote = async () => {
     try {
       // prettier-ignore
-      const res = await axios.get<QuoteType>("https://programming-quotes-api.herokuapp.com/Quotes/random");
+      const res = await axios.get<QuoteType>("https://api.quotable.io/random");
       setQuote(res.data);
       return res.data;
     } catch (err) {
@@ -37,7 +37,7 @@ export const Quote: FC = () => {
     <div className="quote">
       <AnimatePresence exitBeforeEnter>
         <motion.div
-          key={quote.id}
+          key={quote._id}
           className="quote__inner"
           role="contentinfo"
           variants={variants}
@@ -45,8 +45,12 @@ export const Quote: FC = () => {
           exit="exit"
           initial="exit"
         >
-          <p className="quote__text">"{quote.en}"</p>
-          <p className="quote__author">{quote.author}</p>
+          {quote.content && (
+            <>
+              <p className="quote__text">"{quote.content}"</p>
+              <p className="quote__author">{quote.author}</p>
+            </>
+          )}
         </motion.div>
       </AnimatePresence>
       <div className="quote__refresh-icon">

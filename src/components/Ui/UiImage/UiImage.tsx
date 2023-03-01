@@ -7,7 +7,7 @@ interface IProps {
 
   // Optional
   id?: string;
-  onLoad?: () => void;
+  onLoad: () => void;
   variants?: {} | undefined;
   animate?: string;
   initial?: string;
