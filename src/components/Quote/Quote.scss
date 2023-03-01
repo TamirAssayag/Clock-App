@@ -18,12 +18,11 @@
   }
 
   &__inner {
-    width: 50%;
+    flex: 1;
   }
 
   &__refresh-icon {
-    width: 50%;
-
+    flex: 1;
     svg {
       cursor: pointer;
       transition: 0.2s ease all;
